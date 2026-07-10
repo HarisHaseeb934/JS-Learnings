@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day4</title>
+</head>
+<body>
+    <script>
+        // Task 1
+        function checkAge(age){
+            return (age >= 18) ? true : confirm('Did parents allow you?');
+        }
+        // console.log(checkAge(15));
+
+        function checkAGE(age){
+            return (age >= 18) || confirm('Did parents allow you?');
+        }
+        // console.log(checkAGE(15));
+
+        // Task 2
+        function min(a,b){
+            if(a < b){
+                return a;
+            }
+            return b;
+        }
+        // console.log(min(3,7));
+
+        // Task 3
+
+        function power(b,p){
+            if(p === 0) return 1;
+            let result = b;
+            for(let i = 1; i <= p; i++){
+                result *= b; 
+            }
+            return result;
+        }
+        // console.log(power(2,4));
+
+
+        // Task 4
+        function formatPrice(amount, currencySymbol = "$"){
+            if(currencySymbol === null || currencySymbol === ""){
+                return "$" +amount;
+            }
+            return currencySymbol + amount;
+        }
+        // let amount = prompt("Enter Amount");
+        // let currencySymbol = prompt("Enter Symbol");
+        // console.log(currencySymbol);
+        // console.log(formatPrice(amount,currencySymbol));
+
+        // Task 5
+        let finalPrice = 100;
+
+        function taxCalc(price){
+            let finalPrice = price * 0.15;
+            return finalPrice;
+        }
+        console.log(finalPrice);
+        console.log(taxCalc(1500));
+        console.log(finalPrice);
+
+        // Task 6
+        function isPrime(num){
+            for(let i = 2; i < num; i++){
+                if(num % i === 0) return false;
+            }
+            return true;
+        }
+        function printPrimesUpTo(limit){
+            for(let i = 2; i < limit; i++){
+                if(!isPrime(i)) continue;
+                console.log(i);
+            }
+        }
+        printPrimesUpTo(20);
+        console.log(isPrime(13));
+
+    </script>
+</body>
+</html>

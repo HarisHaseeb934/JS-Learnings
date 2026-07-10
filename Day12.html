@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Task 1
+      function ucLetter(str) {
+        let newStr = "";
+        for (let i = 0; i < str.length; i++) {
+          if (i === 0) {
+            newStr += str[i].toUpperCase();
+          } else {
+            newStr += str[i];
+          }
+        }
+        return newStr;
+      }
+      console.log(ucLetter("john"));
+
+      // Task 2
+      function checkSpam(str) {
+        let newStr = "";
+        for (let s of str) {
+          newStr += s.toLowerCase();
+        }
+        return newStr.includes("xxx") || newStr.includes("vigara");
+      }
+      console.log(checkSpam("xxxx"));
+
+      // Task 3
+      function truncate(str, maxlength) {
+          let str2 = "";
+        if (str.length > maxlength) {
+          for (let i = 0; i < maxlength; i++) {
+            str2 += str[i];
+        }
+        return str2;
+        } else {
+          str2 = str + "...";
+          return str2;
+        }
+      }
+      console.log(truncate("harhhfhfhfhfhfhfhfhfhfhfhfhfhfhfhfhfhis",5));
+
+    //   Task 4
+    function extractCurrencyValue(str){
+        return str.slice(1);
+    }
+    console.log(extractCurrencyValue("$120"));
+
+    // Task 5
+    function generateSlug(str){
+        let str1 = "";
+        for(let s of str){
+            if(s === " "){
+                str1 += "-";
+            }else{
+                str1 += s;
+            }
+        }
+        return str1;
+    }
+    console.log(generateSlug("harsi haseeb"));
+
+    // Task 6
+    function maskCard(str){
+        let str1 = "************";
+        str1 += str.slice(12);
+        return str1
+    }
+    console.log(maskCard("1234567891011123"));
+
+    // Task 7
+    function validate(email){
+        return email.includes("@") && email.endsWith(".com");
+    }
+    console.log(validate("hRS@GMAIL.com"));
+    </script>
+  </body>
+</html>

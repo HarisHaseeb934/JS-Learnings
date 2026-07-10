@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 8</title>
+  </head>
+  <body>
+    <script>
+      // Task 1
+      //   ("use strict");
+      let calculator = {
+        ["read"]: function () {
+          this.a = +prompt("Enter a Number");
+          this.b = +prompt("Enter a Number");
+        },
+        ["sum"]: function () {
+          return this.a + this.b;
+        },
+        ["mul"]: function () {
+          return this.a * this.b;
+        },
+      };
+
+      // calculator["read"]();
+      // console.log(calculator.sum());
+      // console.log(calculator.mul());
+
+      // Task 2
+
+      let ladder = {
+        step: 0,
+        up() {
+          this.step++;
+          return this;
+        },
+        down() {
+          this.step--;
+          return this;
+        },
+        show: function () {
+          console.log(this.step);
+        },
+      };
+
+      //   ladder.up().up().up().down().down().show();
+
+      // Task 3
+      ("use strict");
+
+      let profile = {
+        username: "Haris",
+        login() {
+          return `Welcome ${this.username}`;
+        },
+      };
+
+      function validator(callback) {
+        console.log(callback());
+      }
+
+      //   validator(() => profile.login());
+
+      //   Task 4
+      let player1 = { name: "Shadow", level: 9 };
+      let player2 = { name: "Viper", level: 45 };
+      function levelUp() {
+        console.log(`Their new rank is ${++this.level}`);
+      }
+      player1.advance = levelUp;
+      player2.advance = levelUp;
+
+      // player1.advance();
+      // player2.advance();
+
+      // Task 5
+
+      function UserAccount(name) {
+        if (!new.target) {
+          return new UserAccount(name);
+        }
+        this.name = name;
+      }
+      let acc1 = UserAccount("Haris");
+      let acc2 = UserAccount("Soban");
+
+      //   console.log(acc1.name);
+      //   console.log(acc2.name);
+
+      // Task 6
+
+      function Hero(name, role) {
+        this.name = name;
+        this.role = role;
+        this.health = 100;
+        this.level = 1;
+        this.takeDamage = function (amount) {
+          this.health -= amount;
+        };
+      }
+
+      let thor = new Hero("Thor", "Warrior");
+      let loki = new Hero("Loki", "Mage");
+
+      thor.takeDamage(30);
+      //   console.log(thor.health);
+      //   console.log(loki.health);
+
+      // Task 7
+
+      function Transaction(amount) {
+        if (amount < 0) {
+          return {
+            status: "Rejected",
+            reason: "Invalid Amount",
+          };
+        }
+        this.amount = amount;
+        this.status = "Pending";
+      }
+
+      let t1 = new Transaction(500);
+      let t2 = new Transaction(-5);
+
+      //   console.log(t1.status);
+      //   console.log(t2.status);
+
+      // Task 8
+
+      function ChainLink(initialValue) {
+        this.score = initialValue;
+        this.add = function (n) {
+          this.score += n;
+          return this;
+        };
+        this.mul = function (n) {
+          this.score *= n;
+          return this;
+        };
+        this.print = function () {
+          console.log(this.score);
+        };
+      }
+
+      // new ChainLink(5).add(5).mul(3).print();
+
+      // Task 10
+      function executeAdminAction(adminObject, actionKey) {
+        return adminObject?.[actionKey]?.();
+      }
+      let adminPanel = {
+        backup() {
+          return "System Backed Up";
+        },
+        wipe() {
+          return "Database Erased";
+        },
+      };
+
+      console.log(executeAdminAction(adminPanel, "backup"));
+      console.log(executeAdminAction(adminPanel, "format"));
+
+      //   Task 11
+
+      let count = 0;
+      let serverData = null;
+
+      serverData?.processData(count++);
+      console.log(count);
+
+      //   Task 12
+
+      let activeUser = {
+        name: "Haris",
+        auth: { token: "abc123", level: "admin" },
+      };
+      let anonymousUser = { name: "Guest" };
+
+      delete activeUser?.auth?.token;
+      delete activeUser?.auth?.password;
+
+      //   Task 13
+
+      function injectTheme(appConfig) {
+        if(appConfig?.theme?.color === undefined){
+            return appConfig;
+        }
+        appConfig.theme.color = "blue";
+        return appConfig;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day5</title>
+</head>
+<body>
+    <script>
+        // Task 1
+        let calculate = function(num1,num2,action){
+            console.log(action(num1,num2));
+        }
+        calculate(5,6, function(num1,num2){
+            return num1 * num2;
+        })
+        calculate(5,6, function(num1,num2){
+            return num1 - num2;
+        })
+
+        // Task 2
+
+        let square = (n) => n * n;
+        let greet = (n) => "welcome " + n;
+        let standardMessage = () => "Access denied";
+
+        console.log(square(2));
+        console.log(greet("Haris"));
+        console.log(standardMessage());
+
+        // Task 3
+
+        let access = confirm("Grant Admin Rights");
+        let execute;
+        if(access){
+            execute = () => alert("System Overhauled!");
+        }else{
+            execute = () => alert("Operation Aborted.");
+        }
+        execute();
+    </script>
+</body>
+</html>

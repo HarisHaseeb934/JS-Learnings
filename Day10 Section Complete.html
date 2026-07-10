@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day10</title>
+  </head>
+  <body>
+    <script>
+      let sampleMod = {
+        title: "Fixed ESMs ",
+        loadOrder: 12,
+        author: "   Modder123",
+      };
+      function validateAndCleanMod(modObj) {
+        if ("esmFile" in modObj === false) {
+          modObj["esmFile"] = "required_base.esm";
+        }
+        for (let key in modObj) {
+          if (typeof modObj[key] === "number") {
+            modObj[key] *= 2;
+          } else if (modObj[key] === "string") {
+            modObj[key] = modObj[key].trim();
+          }
+        }
+      }
+      validateAndCleanMod(sampleMod);
+      for (let key in sampleMod) {
+        console.log(`${key} : ${sampleMod[key]}`);
+      }
+
+      //   Task 2
+
+      let baseProfile = {
+        username: "Haris_Haseeb",
+        preferences: {
+          theme: "dark",
+          notifications: true,
+        },
+      };
+
+      let shallowUser = {};
+      Object.assign(shallowUser, baseProfile);
+      let deepUser = structuredClone(baseProfile);
+
+      deepUser.preferences.theme = "light";
+      shallowUser.preferences.theme = "cyberpunk";
+
+      console.log(`${baseProfile.preferences.theme}`);
+      console.log(`${deepUser.preferences.theme}`);
+      console.log(`${shallowUser.preferences.theme}`);
+
+      // Object.assign makes copy but not nested properties, nested propertties refrence is old object
+
+      //   Task 3
+      ("use strict");
+
+      let uiProfile = {
+        accountName: "Haris",
+        status: "offline",
+        updateStatus() {
+          this.status = "active";
+          return `Status updated to ${this.status} for ${this.accountName}`;
+        },
+      };
+
+      function simulateClick(callback) {
+        console.log(callback());
+      }
+
+      simulateClick(() => uiProfile.updateStatus());
+
+      // Task 4
+      function GameItem(name, type, weight) {
+        if (!new.target) {
+          return new GameItem(name, type, weight);
+        }
+        this.name = name;
+        this.type = type;
+        this.weight = weight;
+        this.condition = 100;
+        
+      }
+
+      let gun1 = GameItem("Laser Rifle", "Weapon", 8); 
+      let gun2 = new GameItem("Plasma Pistol", "Weapon", 4);
+
+      console.log(gun1.condition);
+
+      // Task 5
+      function CryptoAsset(ticker, coinsCount, currentPrice){
+        this.ticker = ticker;
+        this.coinsCount = coinsCount;
+        this.currentPrice = currentPrice;
+        this[Symbol.toPrimitive] = function(hint){
+          return (hint === "string") ? `Asset: ${this.ticker} | Holdings: ${this.coinsCount}` : (this.coinsCount * this.currentPrice);
+        }
+      }
+
+      let btc = new CryptoAsset("BTC", 0.5, 60000);
+      let eth = new CryptoAsset("ETH", 4, 3000);
+
+      alert(btc);
+      console.log(btc + eth);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day3</title>
+</head>
+<body>
+    <script>
+        // for(let i = 1; i <= 20; i++){
+        //     if(i % 3 !== 0 && i % 2 === 0){
+        //         console.log(i);
+        //     }
+        // }
+
+        // while(true){
+        //     let pin = prompt("Enter a 4 digit pin");
+        //     if(pin === "1234"){
+        //         alert("Access");
+        //         break;
+        //     }else if(pin === null){
+        //         alert("Cancel");
+        //         break;
+        //     }else{
+        //         alert("Try Again");
+        //     }
+        // }
+
+        let score = +prompt("Enter Your Score");
+        switch(true){
+            case (score >= 90):
+                alert("Grade: A");
+            break;
+            case (score <= 89 && score >= 80):
+                alert("Grade: B");
+            break;
+            case (score <= 79 && score >= 70):
+                alert("Grade: C");
+            break;
+            case (score < 70):
+                alert("Grade: F");
+            break;
+        }
+
+
+    </script>
+</body>
+</html>

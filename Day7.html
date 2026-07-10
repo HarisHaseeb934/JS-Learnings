@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day7</title>
+  </head>
+  <body>
+    <script>
+      // Task 1
+      let user = {};
+      user["name"] = "john";
+      user["surname"] = "smith";
+
+      user["name"] = "Pete";
+
+      delete user["surname"];
+
+      // for(let key in user){
+      //     console.log(`Key: ${key} , Value: ${user[key]}`);
+      // }
+
+      // Task 2
+      function isEmpty(schedule) {
+        for (let key in schedule) {
+          return false;
+        }
+        return true;
+      }
+      let schedule = {};
+      // console.log(isEmpty(schedule));
+
+      schedule["name"] = "Haris";
+      // console.log(isEmpty(schedule));
+
+      // Task 3
+      let salaries = {
+        John: 100,
+        Ann: 160,
+        Pete: 130,
+      };
+      function sum(obj) {
+        let sum = 0;
+        for (let key in obj) {
+          sum += obj[key];
+        }
+        return sum;
+      }
+      //   console.log(sum(salaries));
+
+      //   Task 4
+      let menu = {
+        width: 200,
+        height: 300,
+        title: "My menu",
+      };
+
+      function multiplyNumeric(obj) {
+        for (let key in obj) {
+          if (typeof obj[key] === "number") {
+            obj[key] *= 2;
+          }
+        }
+      }
+      multiplyNumeric(menu);
+      //   for (let key in menu) {
+      //     console.log(`Key: ${key} , Value: ${menu[key]}`);
+      //   }
+
+      //   Task 6
+
+      let menu2 = {
+        widht: 200,
+        height: 300,
+        options: {
+          animation: true,
+          speed: "fast",
+        },
+      };
+
+      let shallowMenu = Object.assign({}, menu2);
+      let deepMenu = structuredClone(menu2);
+
+      deepMenu.options.speed = "Slow";
+      // console.log(menu2.options.speed);
+
+      shallowMenu.options.speed = "Slow";
+      // console.log(menu2.options.speed);
+
+      // Task 7
+
+      let obj1 = {
+        ["name"]: "Haris",
+        ["role"]: "Guest",
+      };
+      function checkAndUpgrade(obj) {
+        if ("role" in obj) {
+          obj["role"] = "Admin";
+        } else {
+          obj["role"] = "Guest";
+        }
+      }
+      checkAndUpgrade(obj1);
+      // console.log(obj1["role"]);
+
+      // Task 8
+
+      let menu3 = {
+        width: 200,
+        height: 300,
+        title: "My menu",
+        isAvailable: true,
+      };
+
+      function update(obj){
+        for(let key in obj){
+            if(typeof obj[key] === "number"){
+                obj[key] *= 2;
+            }
+        }
+      }
+      update(menu3);
+      for(let key in menu3){
+        console.log(`Key = ${key} , Value = ${menu3[key]}`);
+      }
+    </script>
+  </body>
+</html>

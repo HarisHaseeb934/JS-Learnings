@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day9</title>
+  </head>
+  <body>
+    <script>
+      //   Task 1
+
+      let pluginId = Symbol("modData");
+      let gameState = {
+        score: 1500,
+        level: 4,
+        playerName: "Haris",
+        [pluginId]: "NV_MOD_PACK_99",
+      };
+
+      for (let key in gameState) {
+        console.log(key);
+      }
+
+      //   Task 2
+
+      function registerGlobalConfig(obj, idString) {
+        let id = Symbol.for("config.system.id");
+        obj[id] = idString;
+      }
+      function extractGlobalKey(symbolValue) {
+        return Symbol.keyFor(symbolValue);
+      }
+
+      let masterConfig = {};
+      registerGlobalConfig(masterConfig, "SYS_ALPHA_2026");
+      let myGlobalSymbol = Symbol.for("config.system.id"); 
+      console.log(extractGlobalKey(myGlobalSymbol));
+
+      // Task 3
+      function Wallet(amount) {
+        this.amount = amount;
+        this[Symbol.toPrimitive] = function (hint) {
+          return hint === "string" ? `Balance ${this.amount}` : this.amount;
+        };
+      }
+
+      let walletA = new Wallet(250);
+      let walletB = new Wallet(100);
+      alert(walletA);
+      console.log(walletA + walletB);
+
+      // Task 4
+
+      let fallbackWallet = {
+        balance: 500,
+        toString(){
+            return `Balance: $${this.balance}`;
+        },
+        valueOf(){
+            return this.balance;
+        }
+      };
+
+      alert(fallbackWallet);
+      console.log(fallbackWallet + 5);
+
+
+    </script>
+  </body>
+</html>

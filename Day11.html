@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day11</title>
+</head>
+<body>
+    <script>
+        // Task 1
+        // let num = +prompt("Enter a Number:");
+        // let num1 = +prompt("Enter a Number:");
+        // alert(num + num1);
+
+        // Task 2
+        function readNumber(){
+            let num = prompt("Enter a Number:");
+            if(num === null || num === ""){
+                return null;
+            }
+            return num;
+        }
+        // console.log(readNumber());
+
+        // Task 3
+        function random(min,max){
+            return Math.random() * (max - min) + min;
+        }
+        // alert( random(1, 5) );
+        
+        // Task 4
+        function randomIntegar(min,max){
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        // alert(randomIntegar(1, 5));
+
+        // Task 5
+        function addTipToBalance(currentBalance, tipAmount){
+            let result = currentBalance + tipAmount;
+            return +result.toFixed(4);
+        }
+        console.log(addTipToBalance(0.4242, 0.24242));
+
+        // Task 6
+        function extractPixels(styleString){
+            if(!isNaN(parseInt(styleString))){
+                return parseInt(styleString);
+            }else if(styleString[0] === "#"){
+                let newstr = "";
+                for(let i = 1; i < styleString.length; i++){
+                    newstr += styleString[i];
+                }
+                return parseInt(newstr, 16);
+            }else{
+                return 0;
+            }
+        }
+        console.log(extractPixels("#0xff"));
+
+        // Task 7
+        function cleanUserWeight(inputData){
+            if(isFinite(inputData)){
+                return Math.trunc(inputData);
+            }else{
+                return 0;
+            }
+        }
+        console.log(cleanUserWeight(Infinity));
+
+        // Task 8 
+        let hexColor = 255..toString(16);
+
+        // Task 9
+
+    </script>
+</body>
+</html>

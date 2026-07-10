@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays</title>
+  </head>
+  <body>
+    <script>
+      // Task 1
+      function camelSize(str) {
+        return str
+          .split("-")
+          .map((item, index) =>
+            index === 0 ? item : item[0].toUpperCase() + item.slice(1),
+          )
+          .join("");
+      }
+      console.log(camelSize("back-ground"));
+
+      // Task 2
+      function filterRange(arr, a, b) {
+        return arr.filter((item) => item >= a && item <= b);
+      }
+      console.log(filterRange([1, 2, 3, 4, 5, 6], 3, 6));
+
+      // Task 3
+      function filterRangeInPlace(arr, a, b) {
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] < a || arr[i] > b) {
+            arr.splice(i, 1);
+            i--;
+          }
+        }
+      }
+      console.log(filterRange([1, 2, 3, 4, 5, 6], 3, 6));
+
+      let arr = [2, 3, 4, 5, 52, 6];
+      arr.sort((a, b) => b - a);
+      console.log(arr);
+
+      // Task 4
+      function copySorted(arr) {
+        return arr.sort((a, b) => a.localeCompare(b));
+      }
+      console.log(copySorted(["haris", "Soban", "Mute"]));
+
+      // Task 5
+      function Calculator() {
+        this.method = {
+          "+": (a, b) => a + b,
+          "-": (a, b) => a - b,
+        };
+
+        this.calulate = function (str) {
+          let arr = str.split(" ");
+          a = +arr[0];
+          op = arr[1];
+          c = +arr[2];
+
+          if (!this.method[op] || isNaN(a) || isNaN(c)) {
+            return NaN;
+          }
+
+          return this.method[op](a, c);
+        };
+        this.addMethod = function (name, func) {
+          this.method[name] = func;
+        };
+      }
+      let cal = new Calculator();
+      console.log(cal.calulate("1 + 3"));
+
+      // Task 5
+      let john = { name: "John", age: 25 };
+      let pete = { name: "Pete", age: 30 };
+      let mary = { name: "Mary", age: 28 };
+
+      let users = [john, pete, mary];
+
+      let names = users.map((item) => item.name);
+
+      //alert(names); // John, Pete, Mary
+
+      //   Task 6
+      let john1 = { name: "John", surname: "Smith", id: 1 };
+      let pete1 = { name: "Pete", surname: "Hunt", id: 2 };
+      let mary1 = { name: "Mary", surname: "Key", id: 3 };
+
+      let users1 = [john1, pete1, mary1];
+      let userMapped = users1.map((item) => ({
+        name: item.name + " " + item.surname,
+        id: item.id,
+      }));
+      console.log(userMapped[0].name);
+
+      let john2 = { name: "John", age: 25 };
+      let pete2 = { name: "Pete", age: 30 };
+      let mary2 = { name: "Mary", age: 28 };
+
+      let arr3 = [pete, john, mary];
+
+      function sortAge(arr) {
+        return arr.sort((a, b) => a.age - b.age);
+      }
+      console.log(sortAge(arr3));
+
+      //   Task 7
+      let arr5 = [1, 3, 4];
+      function shuffle(arr) {
+        return arr.sort(() => Math.random() - 0.5);
+      }
+      console.log(shuffle(arr5));
+
+      // Task 8
+      function getAverageAge(users) {
+        return users.reduce();
+      }
+      console.log(getAverageAge(arr3));
+
+      // Task 9
+      function unique(arr) {
+        return arr.filter(item => {
+            arr.forEach(element => {
+               item !== element; 
+            });
+        })
+      }
+      let strings = [
+        "Hare",
+        "Krishna",
+        "Hare",
+        "Krishna",
+        "Krishna",
+        "Krishna",
+        "Hare",
+        "Hare",
+        ":-O",
+      ];
+
+      console.log(unique(strings));
+    </script>
+  </body>
+</html>

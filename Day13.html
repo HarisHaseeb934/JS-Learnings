@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day13</title>
+</head>
+<body>
+    <script>
+        // Task 1
+        let arr = ["Jazz", "Blue"];
+        arr.push("Rock-Roll");
+        let middle = Math.round(arr.length / 2);
+        arr[middle] = "classics";
+        console.log(arr.shift());
+        arr.unshift("Rap");
+        arr.unshift("Reggae");
+        console.log(arr);
+
+        // Task 2
+        function sumInput(){
+            let arr = [];
+            let count = 0;
+            while(true){
+                let num = +prompt("enter numbers");
+                if(num === null || num === " " || isNaN(num)){
+                    let sum = 0;
+                    for(let a of arr){
+                        sum += a;
+                    }
+                    alert(sum);
+                    break;
+                }
+                arr[count++] = num;
+            }
+        }
+        // sumInput();
+
+        // Task 3
+        function getMax(arr){
+            let max = 0;
+            for(let i = 0 ; i < arr.length; i++){
+                let sum = 0;
+                for(let j = i; j < arr.length; j++){
+                    sum += arr[j];
+                    max = Math.max(sum, max);
+                }
+            }
+            return max;
+        }
+        console.log(getMax([-1, 2, 3, -9]))
+    </script>
+</body>
+</html>

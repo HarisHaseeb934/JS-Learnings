@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day6</title>
+</head>
+<body>
+    <script>
+        // Challenge 1
+
+        let cleanInput = (data) => {
+            switch(typeof data){
+                case "string":
+                    let result = "";
+                    for(let i = 0; i < data.length; i++){
+                        if(data[i] === " "){
+                            continue;
+                        }
+                        result += data[i];
+                    }
+                    return result;
+                break;
+                case "number":
+                    return (isNaN(data)) ? "Invalid Number" : data;
+                break;
+                case "boolean":
+                    return `Boolean Detected ${data}`;
+                break;
+                default:
+                    return data ?? "Unknown Type";
+            }
+        };
+        console.log(cleanInput(undefined));
+    </script>
+</body>
+</html>
