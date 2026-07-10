@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Practice</title>
+  </head>
+  <body>
+    <script>
+      // Task 1
+      const members = [
+        { name: "Alice", isVIP: true },
+        { name: "Bob", isVIP: false },
+        { name: "Charlie", isVIP: true },
+        { name: "David", isVIP: false },
+      ];
+
+      function getVipNames(members) {
+        return members
+          .filter((person) => person.isVIP === true)
+          .map((person) => person.name);
+      }
+      console.log(getVipNames(members));
+
+      // Task 2
+      function formatPrice(prices) {
+        return prices.map((price) => `$${price.toFixed(2)}`);
+      }
+      console.log(formatPrice([5, 9.99, 15.5, 42]));
+
+      // Task 3
+      function reverseWords(str) {
+        return str.split(" ").reverse().join(" ");
+      }
+      console.log(reverseWords("javaScript is awesome"));
+
+      // Task 4
+      const inventory = [
+        { id: 1, name: "Apples", category: "Fruit", stock: 12 },
+        { id: 2, name: "Milk", category: "Dairy", stock: 0 },
+        { id: 3, name: "Bananas", category: "Fruit", stock: 5 },
+        { id: 4, name: "Cheddar", category: "Dairy", stock: 2 },
+      ];
+
+      function findProductById(id) {
+        return inventory.find((item) => item.id === id);
+      }
+
+      function hasOutofStockDairy() {
+        return inventory.some((item) => item.stock === 0);
+      }
+
+      console.log(findProductById(3));
+      console.log(hasOutofStockDairy());
+
+      // Task 5
+      const students = [
+        { name: "John", score: 85 },
+        { name: "Pete", score: 98 },
+        { name: "Mary", score: 74 },
+        { name: "Alex", score: 91 },
+      ];
+
+      function sortStudentsByScore(arr) {
+        return arr.slice(",").sort((a, b) => b.score - a.score);
+      }
+      console.log(sortStudentsByScore(students));
+
+      // Task 6
+      const cart = [
+        { item: "Laptop", weightKg: 2.5 },
+        { item: "Books", weightKg: 1.8 },
+        { item: "Phone Case", weightKg: 0.1 },
+      ];
+
+      function getTotalWeight(cart){
+        return cart.reduce((prev, curr) => prev + curr.weightKg, 0);
+      }
+      console.log(getTotalWeight(cart));
+    </script>
+  </body>
+</html>
