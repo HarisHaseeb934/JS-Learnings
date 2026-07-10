@@ -114,17 +114,24 @@
 
       // Task 8
       function getAverageAge(users) {
-        return users.reduce();
+        return users.reduce((prev, users) => prev + users.age, 0 / users.length);
       }
-      console.log(getAverageAge(arr3));
+      let john5 = { name: "John", age: 25 };
+      let pete5 = { name: "Pete", age: 30 };
+      let mary5 = { name: "Mary", age: 29 };
+
+      let arr6 = [john, pete, mary];
+      console.log(getAverageAge(arr6));
 
       // Task 9
       function unique(arr) {
-        return arr.filter(item => {
-            arr.forEach(element => {
-               item !== element; 
-            });
-        })
+        let result = [];
+        for(let value of arr){
+          if(!result.includes(value)){
+            result.push(value);
+          }
+        }
+        return result;
       }
       let strings = [
         "Hare",
@@ -137,8 +144,23 @@
         "Hare",
         ":-O",
       ];
-
+      
       console.log(unique(strings));
+
+      // Task 10
+      let users2 = [
+      {id: 'john', name: "John Smith", age: 20},
+      {id: 'ann', name: "Ann Smith", age: 24},
+      {id: 'pete', name: "Pete Peterson", age: 31},
+      ];
+
+      function groupById(users2){
+        return users2.reduce((obj, value) => {
+          obj[value.id] = value;
+          return obj;
+        },{});
+      }
+      console.log(groupById(users2));
     </script>
   </body>
 </html>
