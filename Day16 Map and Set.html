@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map and Set</title>
+  </head>
+  <body>
+    <script>
+      // Task 1
+      let values = [
+        "Hare",
+        "Krishna",
+        "Hare",
+        "Krishna",
+        "Krishna",
+        "Krishna",
+        "Hare",
+        "Hare",
+        ":-O",
+      ];
+      function unique(arr) {
+        return Array.from(new Set(arr));
+      }
+      console.log(unique(values));
+
+      //   Task 2
+      function aclea(arr) {
+        let map = new Map();
+        for (let value of arr) {
+          let sorted = value.toLowerCase().split("").sort().join();
+          map.set(sorted, value);
+        }
+        return Array.from(map.values);
+      }
+      let arr = [
+        "nap",
+        "teachers",
+        "cheaters",
+        "PAN",
+        "ear",
+        "era",
+        "hectares",
+      ];
+      console.log(aclea(arr));
+
+      // Task 3
+      const duplicateTags = ["js", "html", "js", "css", "html", "react"];
+      function uniques(arr) {
+        return Array.from(new Set(arr));
+      }
+      console.log(uniques(duplicateTags));
+      //  TAsk 4
+      const john = { name: "John" };
+      const lily = { name: "Lily" };
+
+      let map = new Map();
+      map.set(john, "Admin");
+      map.set(lily, "Editor");
+
+      function getRole(user) {
+        return map.get(user);
+      }
+      console.log(getRole(john));
+
+      //   Task 4
+      const fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
+      function countFruits(arr) {
+        return arr.reduce((obj, item) => {
+          obj[item] = (obj[item] || 0) + 1;
+          return obj;
+        }, {});
+      }
+      let obj = countFruits(fruits);
+      console.log(Object.entries(obj));
+
+      // Task 4
+      const listA = [1, 2, 3];
+      const listB = [3, 4, 5];
+
+      function mergeUnique(lista, listb) {
+        let combine = lista.concat(listb);
+        let set = new Set(combine);
+        return Array.from(set);
+      }
+      console.log(mergeUnique(listA, listB));
+
+      //   Task 5
+      const a = [1, 2];
+      const b = [2, 3];
+      const c = [3, 4];
+
+      function combineThree(a, b, c) {
+        let comine = a.concat(b).concat(c);
+        let set = new Set(comine);
+        return Array.from(set);
+      }
+      console.log(combineThree(a, b, c));
+
+      //   TAsk 6
+
+      let phoneBook = new Map();
+      phoneBook.set("Alex", "555-1234");
+      phoneBook.set("Sam", "555-5678");
+
+      function getPhoneNumber(name) {
+        if (phoneBook.has(name)) {
+          return phoneBook.get(name);
+        } else {
+          return "Not Found";
+        }
+      }
+      console.log(getPhoneNumber("Haris"));
+
+      // Task 7
+      const items = [
+        { name: "Notebook", price: 5 },
+        { name: "Backpack", price: 50 },
+        { name: "Pen", price: 2 },
+      ];
+
+      function getPrice(item, arr){
+        let find =  arr.find(product => product.name === item);
+        return find ? find.price : "NotFound";
+      }
+      console.log(getPrice("Backpack", items));
+    </script>
+  </body>
+</html>

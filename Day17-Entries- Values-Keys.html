@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object</title>
+  </head>
+  <body>
+    <script>
+      const userRoles = {
+        admin_alex: "Admin",
+        user_sara: "User",
+        guest_mike: "Guest",
+      };
+      function getUserNames(obj) {
+        return Object.keys(obj);
+      }
+      console.log(getUserNames(userRoles));
+
+      //   Task 2
+      const salaries = {
+        John: 200,
+        Pete: 300,
+        Mary: 250,
+      };
+      function sumSalaries(obj) {
+        return Object.values(obj).reduce((prev, current) => prev + current, 0);
+      }
+      console.log(sumSalaries(salaries));
+
+      //   Task 3
+      const prices = {
+        banana: 1,
+        orange: 2,
+        meat: 4,
+      };
+
+      function doublePrices(obj) {
+        return Object.fromEntries(
+          Object.entries(obj).map((item) => [item[0], item[1] * 2]),
+        );
+      }
+      console.log(doublePrices(prices));
+
+      //   Task 4
+      const storage = {
+        apples: 10,
+        bananas: 0,
+        oranges: 5,
+        pears: 0,
+      };
+      function getOutOfStock(obj) {
+        return Object.entries(obj)
+          .filter((item) => item[1] === 0)
+          .map((item) => item);
+      }
+      console.log(getOutOfStock(storage));
+
+      //   Task 4
+      const specs = {
+        brand: "Apple",
+        model: "iPhone 15",
+        storage: "128GB",
+        color: "Black",
+      };
+
+      function getLabels(obj) {
+        return Object.entries(obj).map((item) => item[0].toUpperCase());
+      }
+      console.log(getLabels(specs));
+
+      //   Task 7
+      const cart1 = { shirt: 25, pants: 40, jacket: 60 };
+      const cart2 = { shirt: 25, socks: 5, jacket: 60 };
+
+      function isEligibleForFreeShipping(obj){
+        return Object.values(obj).every( item => item > 10);
+      }
+      console.log(isEligibleForFreeShipping(cart1));
+      console.log(isEligibleForFreeShipping(cart2));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day18</title>
+  </head>
+  <body>
+    <script>
+      // Task 1
+      let user = {
+        name: "John",
+        years: 30,
+      };
+      let { name, years: age, isAdmin = false } = user;
+      console.log(name);
+      console.log(age);
+      console.log(isAdmin);
+
+      //   Task 2
+      let salaries = {
+        John: 100,
+        Pete: 300,
+        Mary: 250,
+      };
+      function topSalary(salaries) {
+        let maxSalary = 0;
+        let maxName = null;
+        for (let [name, salary] of Object.entries(salaries)) {
+          if (maxSalary < salary) {
+            maxSalary = salary;
+            maxName = name;
+          }
+        }
+        return maxName;
+      }
+      console.log(topSalary(salaries));
+
+      //   Task 4
+      const user1 = {
+        name: "Sarah",
+        age: 28,
+        city: "London",
+        joinedDate: "2024-03-15",
+      };
+      let { name: n, age: a, city, joinedDate } = user1;
+      console.log(n);
+      console.log(a);
+      console.log(city);
+      console.log(joinedDate);
+
+      //   Task 5
+      const coordinates = [51.5074, -0.1278];
+      let [lat, lag] = coordinates;
+      console.log(lat);
+      console.log(lag);
+
+      // Task 6
+      const settings = {
+        theme: "dark",
+        timeout: 5000,
+      };
+      let { theme, timeout: duration, volume = 70 } = settings;
+      console.log(theme);
+      console.log(duration);
+      console.log(volume);
+
+      //   Task 5
+      const company = {
+        name: "TechCorp",
+        location: {
+          country: "USA",
+          city: "San Francisco",
+        },
+        ceo: {
+          name: "Jane Doe",
+          title: "Chief Executive Officer",
+        },
+      };
+
+      let {
+        location: { city: c },
+        ceo: { title },
+      } = company;
+      console.log(c);
+      console.log(title);
+
+      //   Task 6
+
+      const racers = ["Alice", "Bob", "Charlie", "David", "Ethan", "Frank"];
+      let [gold, silver, ...everyoneElse] = racers;
+      console.log(gold);
+      console.log(silver);
+      console.log(everyoneElse);
+
+      // Task 8
+
+      function displayProfile({ username, role = "Guest" }) {
+        console.log(`User ${username} is an ${role}`);
+      }
+      displayProfile({ username: "coder123", role: "Admin" });
+      displayProfile({ username: "anon99" });
+
+      // Task 9
+      const account = {
+        id: 9021,
+        email: "alex@dev.com",
+        firstName: "Alex",
+        lastName: "Smith",
+        theme: "dark",
+      };
+
+      let { id, email, ...rest } = account;
+
+      console.log(id);
+      console.log(email);
+      console.log(rest);
+
+      //   Task 10
+      const stock = {
+        apple: 5,
+        banana: 3,
+        orange: 8,
+      };
+      for(let [key, value] of Object.entries(stock)){
+        console.log(`${key} : ${value}`);
+      }
+
+    //   Task 10
+    function createWindow({title, size: { width = 800, height = 600}}){
+        console.log(`Window ${title} created with size ${width}X${height}`);
+    }
+    createWindow({ title: "My App", size: { width: 1024, height: 768 } });
+    console.log(createWindow({ title: "Popup", size: {} }));
+    </script>
+  </body>
+</html>
