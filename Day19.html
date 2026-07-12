@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day19</title>
+</head>
+<body>
+    <script>
+        let now = new Date();
+            console.log(now);
+
+        let mili = new Date(0);
+        console.log(mili);
+
+        let day = new Date(24 * 3600 * 1000);
+        console.log(day);
+
+        let negday = new Date(-24 * 3600 * 1000);
+        console.log(negday);
+
+        let timeStamp = new Date("2026-07-11");
+        console.log(timeStamp);
+
+        console.log(new Date(2026, 0, 11,0,0,0,0));
+        console.log(new Date(2026, 0, 11));
+
+        console.log(new Date(2026,7,11,13,50,500));
+
+        let date2 = new Date();
+        console.log(date2.getFullYear());
+        console.log(date2.getMonth());
+        console.log(date2.getDate());
+        console.log(date2.getHours());
+        console.log(date2.getMinutes());
+        console.log(date2.getSeconds());
+        console.log(date2.getMilliseconds());
+
+
+        console.log(Date.now());
+
+        // Task 1
+        console.log("Tasks");
+        console.log(new Date(2012,1,20,3,12));
+
+        // Task 2
+        let shortDat = new Date(2012,0,3);
+        function getWeekDay(date){
+            let day = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+            return day[date.getDay()];
+        }
+        console.log(getWeekDay(shortDat));
+
+        // Task 3
+        function getLocalDate(date){
+            let day = date.getDay();
+            if(day == 0){
+                day = 7;
+            }
+            return day;
+        }
+        let date3 = new Date(2012,0,3);
+        console.log(getLocalDate(date3))
+
+        // Task 4
+        function getDateAgo(date, days){
+            date.setDate(date.getDate() - days);
+            return date.getDate();
+        }
+        let date4 = new Date();
+        // console.log(getDateAgo(date4 - 2));
+        console.log(date4.getDate() - 4);
+
+        // Task 5
+        function getLastDayOfMonth(year, month){
+            let date = new Date(year, month + 1, 0);
+            return date.getDate();
+        }
+        console.log(getLastDayOfMonth(2026, 6));
+
+        function getSecondsToday(){
+            let now = new Date();
+            let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            let diff = now-today;
+            return Math.round(diff / 1000);
+        }
+
+        console.log(getSecondsToday());
+
+        // Task 6
+        function getSecondsToTomorrow(){
+            let date = new Date();
+            let tomrrow = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+            console.log(Math.round(tomrrow - date));
+        }
+        getSecondsToTomorrow();
+
+        // Task 7
+
+        function createSpecificDate(){
+            return new Date(2012, 1, 20, 3, 12);
+        }
+        console.log(createSpecificDate());
+
+        function getWeekDay2(date){
+            let day = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+            return day[date.getDay()];
+        }
+        let date11 = new Date();
+        console.log(getWeekDay2(date11));
+
+        function dayAgo(date, days){
+            let date1 = new Date();
+            date1.setDate(date.getDate() - days);
+            return date1;
+        }
+        let today = new Date();
+        console.log(getDateAgo(today, 1));
+
+        // Task 6
+        // function measurePerformance(callBack){
+        //     let d = Date.now();
+        //     callBack();
+        //     let d2 = Date.now();
+        //     return d2 - d;
+        // }
+        // function heavyLoop(){
+        //     for(let i = 0; i < 100000000000000000; i++){
+        //         Math.sqrt(i);
+        //     }
+        // }
+        // console.log(measurePerformance(heavyLoop));
+
+       function getExpiryDate(signup){
+            let date = new Date();
+            date.setMonth(signup.get)
+            return date;
+       } 
+       console.log(getExpiryDate(new Date(2026, 4, 15)));
+    </script>
+</body>
+</html>
