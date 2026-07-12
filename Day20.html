@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day JSON</title>
+  </head>
+  <body>
+    <script>
+      //   Task 1
+      let user = {
+        name: "John Smith",
+        age: 35,
+      };
+
+      let json = JSON.stringify(user);
+      console.log(json);
+
+      let original = JSON.parse(json);
+      console.log(original);
+
+      //   Task 2
+      let room = {
+        number: 23,
+      };
+
+      let meetup = {
+        title: "Conference",
+        occupiedBy: [{ name: "John" }, { name: "Alice" }],
+        place: room,
+      };
+
+      room.occupiedBy = meetup;
+      meetup.self = meetup;
+
+      console.log(
+        JSON.stringify(meetup, function (key, value) {
+          return key != "" && value == meetup ? undefined : value;
+        }),
+      );
+
+      //   Task 3
+      const serverData = '{"id":101,"username":"dev_dan","roles":["admin"]}';
+
+      function parseProfile(json) {
+        return JSON.parse(json);
+      }
+
+      const user1 = parseProfile(serverData);
+      console.log(user1.username);
+      console.log(user1.roles[0]);
+
+      //   Task 4
+      const userAccount = {
+        name: "Alice",
+        passwordHash: "xyz123abc456",
+        toJSON() {
+          return { name: this.name };
+        },
+      };
+
+      console.log(JSON.stringify(userAccount));
+
+      //   Task 5
+      const employee = {
+        id: 456,
+        title: "Senior Developer",
+        email: "dev@company.com",
+        salary: 120000,
+      };
+
+      let jsonStr = JSON.stringify(employee, function (key, value) {
+        return key == "id" || key == "salary" ? undefined : value;
+      });
+      console.log(jsonStr);
+
+      //   Task 6
+      let room1 = { number: 237 };
+      let guest = { name: "John" };
+
+      room.occupiedBy = guest;
+      guest.place = room1;
+
+      let result = JSON.stringify(room1, function replacer(key, value) {
+        return key == "occupiedBy" ? undefined : value;
+      });
+
+      console.log(result);
+
+      //   Task 7
+      let networkData =
+        '{"title":"Conference","date":"2026-07-12T12:00:00.000Z"}';
+
+      let meetup1 = JSON.parse(networkData, function (key, value) {
+        if(key == "date") return new Date(value);
+        return value;
+      });
+
+      console.log(meetup1.date.getDate());
+    </script>
+  </body>
+</html>
