@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day22 Spread</title>
+  </head>
+  <body>
+    <script>
+      // Task 1
+      function sumAll(...arr) {
+        // let sum = 0;
+        // for(let val of arr){
+        //     sum += val;
+        // }
+        // return sum;
+
+        return arr.reduce((prev, curr) => prev + curr, 0);
+      }
+      console.log(sumAll(1, 2));
+      console.log(sumAll(1, 2, 3, 4));
+
+      // Task 2
+      const inventory1 = ["Tomato", "Onion"];
+      const inventory2 = ["Garlic", "Pepper"];
+
+      let combined = ["Salt", ...inventory1, ...inventory2];
+      console.log(combined);
+
+      // Task 3
+      const user = {
+        id: 101,
+        username: "coder99",
+        theme: "dark",
+      };
+
+      let updatedUser = { ...user, theme: "light", status: "active" };
+
+      console.log(updatedUser);
+      console.log(user.theme);
+
+      //   Task 4
+      const scores = [42, 99, 15, 124, 88];
+
+      let hScore = Math.max(...scores);
+      console.log(hScore);
+
+      // Task 5
+      const product = {
+        title: "Mechanical Keyboard",
+        price: 89.99,
+        weight: "1.2kg",
+        dimensions: "35x12x4 cm",
+        manufacturer: "Key精",
+      };
+
+      let {title, price, ...shippingDetails} = product;
+      console.log(title);
+      console.log(shippingDetails);
+
+      
+    </script>
+  </body>
+</html>
