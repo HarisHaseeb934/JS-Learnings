@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Call Apply Bind</title>
+  </head>
+  <body>
+    <script>
+      const wizard = {
+        name: "Gandalf",
+        castSpell() {
+          console.log(`${this.name} casts a spell!`);
+        },
+      };
+
+      const warrior = { name: "Aragorn" };
+
+      const castForWarrior = wizard.castSpell.bind(warrior);
+
+      wizard.castSpell.call(warrior);
+      castForWarrior.call(wizard);
+
+      //   Task 1
+      const commandFlags = {
+        0: "--verbose",
+        1: "--ignore-errors",
+        2: "--production",
+        length: 3,
+      };
+
+      let flagString = [].join.call(commandFlags, "-");
+      console.log(flagString);
+
+      //   Task 2
+      const accountant = {
+        currency: "$",
+        calculateTax(income, rate) {
+          return `${this.currency}${income * rate}`;
+        },
+      };
+
+      function spy(func) {
+        return function (...args) {
+          console.log("LOG: Executing function...");
+          return func.apply(this, args);
+        };
+      }
+
+      accountant.calculateTax = spy(accountant.calculateTax);
+
+      console.log(accountant.calculateTax(100000, 0.2));
+
+      //   Task 3
+      function multiply(a, b) {
+        return a * b;
+      }
+      const triple = multiply.bind(null, 3);
+
+      console.log(triple(5));
+      console.log(triple(10));
+
+      //   Task 4
+      const dog = {
+        sound: "Woof!",
+        bark() {
+          console.log(this.sound);
+        },
+      };
+
+      const cat = {
+        sound: "Meow!",
+      };
+
+      dog.bark.call(cat);
+
+      //   Task 5
+      const scores = [12, 45, 3, 23, 9];
+
+      let lowestScore = Math.min.apply(this, scores);
+
+      console.log(lowestScore);
+
+      //   Task 6
+      const car = {
+        brand: "Tesla",
+        drive() {
+          console.log(`Driving the ${this.brand}`);
+        },
+      };
+
+      let safeDrive = car.drive.bind(car);
+
+      setTimeout(safeDrive, 1000);
+
+      //   Task 7
+      function celebrateBirthday(greeting) {
+        this.age += 1;
+        console.log(`${greeting}, ${this.name}! You are now ${this.age}.`);
+      }
+
+      const player1 = { name: "Sonic", age: 15 };
+      const player2 = { name: "Mario", age: 40 };
+
+      let celebrate = celebrateBirthday.call(player1, "Hello");
+      let celebrate1 = celebrateBirthday.call(player2, "Hello");
+
+      //   Task 8
+      const salaries = [2500, 5000, 1500, 8000, 4200];
+      let topSalary = Math.max.apply(null, salaries);
+      console.log(topSalary);
+
+      // Task 9
+      const UIController = {
+        screenName: "Dashboard",
+        renderLogout() {
+          console.log(`Clearing session data for ${this.screenName}...`);
+        },
+      };
+
+      let safeClickEvent = UIController.renderLogout.bind(UIController);
+      safeClickEvent();
+
+      //   Task 10
+
+      function takeDamage(amount) {
+        this.health -= amount;
+        console.log(
+          `${this.name} took ${amount} damage! Remaining health: ${this.health}`,
+        );
+      }
+
+      const boss = { name: "Dragon", health: 500 };
+      const minion = { name: "Goblin", health: 30 };
+
+      takeDamage.call(minion, 15);
+
+      //   Task 11
+      const startingInventory = ["Potion", "Bread"];
+      const chestItems = ["Sword", "Shield", "Gold Key"];
+
+      startingInventory.push.apply(startingInventory, chestItems);
+      console.log(startingInventory);
+
+      //   Task 12
+      const superstar = {
+        stageName: "Lady Gaga",
+        announce() {
+          console.log(`Live from New York, it's ${this.stageName}!`);
+        },
+      };
+
+      let boundAnnounce = superstar.announce.bind(superstar);
+
+      setTimeout(boundAnnounce, 1000);
+
+      //   Task 13
+      const ObjectToString = Object.prototype.toString;
+
+      const fakeArray = ["Apple", "Banana"];
+
+      let trueType = ObjectToString.call(fakeArray);
+      console.log(trueType);
+
+      //   Task 14
+      function formatPrice(currency, taxRate, price) {
+        const total = price + price * taxRate;
+        return `${currency}${total.toFixed(2)}`;
+      }
+      const makeUSAPriceTag = formatPrice.bind(null, "$", 0.08);
+      console.log(makeUSAPriceTag(100));
+      console.log(makeUSAPriceTag(50));
+    </script>
+  </body>
+</html>

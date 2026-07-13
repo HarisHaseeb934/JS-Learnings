@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Closres</title>
+  </head>
+  <body>
+    <script>
+      // Task 1
+      function createCounter() {
+        let count = 0;
+        return function () {
+          return count++;
+        };
+      }
+      let count = createCounter();
+
+      console.log(count());
+      console.log(count());
+      console.log(count());
+      console.log(count());
+      console.log(count());
+
+      let count2 = createCounter();
+      console.log(count2());
+      console.log(count2());
+      console.log(count2());
+      console.log(count2());
+
+      // Task 2
+      function makeMultiplier(num) {
+        return function (num2) {
+          return num * num2;
+        };
+      }
+
+      const double = makeMultiplier(2);
+      const triple = makeMultiplier(3);
+
+      console.log(double(5));
+      console.log(triple(5));
+
+    //   Task 3
+    
+    </script>
+  </body>
+</html>

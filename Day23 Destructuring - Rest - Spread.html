@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuring - Spread - Rest</title>
+  </head>
+  <body>
+    <script>
+      const serverResponse = {
+        id: "usr_99X1",
+        name: "Alex",
+        role: "Editor",
+        email: "alex@media.com",
+        joinedDate: "2024-01-10",
+      };
+
+      let { id, joinedDate, ...cleanPayLoad } = serverResponse;
+
+      console.log(id);
+      console.log(cleanPayLoad);
+
+      //   Task 2
+      const defaultConfig = {
+        theme: "light",
+        fontSize: 14,
+        sidebar: true,
+        version: 1.0,
+      };
+
+      const userOverrides = {
+        theme: "dark",
+        fontSize: 18,
+      };
+
+      let finalConfig = {...defaultConfig, ...userOverrides, version: 2.0};
+
+      console.log(finalConfig);
+
+    //   Task 3
+    const leaderboard = ["Lewis", "Max", "Charles", "Lando", "George"];
+    let [winner, runnerup, ...losersrackets] = leaderboard;
+    console.log(winner);
+    console.log(runnerup);
+    console.log(losersrackets);
+
+    
+
+    </script>
+  </body>
+</html>

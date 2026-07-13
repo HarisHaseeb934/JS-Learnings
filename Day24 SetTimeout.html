@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Timeout</title>
+  </head>
+  <body>
+    <script>
+      // Task 1
+      function printNumbers(from, to) {
+        let current = from;
+        let timerId = setInterval(function () {
+          console.log(current);
+          if (current == to) {
+            clearInterval(timerId);
+          }
+          current++;
+        }, 1000);
+      }
+      // printNumbers(1,10);
+
+      console.log("Before");
+
+      // Task 2
+      function delayGreeting(name, delay) {
+        setTimeout(() => console.log(`Hello ${name}`), delay);
+      }
+      delayGreeting("Haris", 2000);
+
+      // Task 3
+      function printNumbers(from, to) {
+        let current = from;
+        let timerId = setInterval(() => {
+          console.log(current);
+          if (current == to) {
+            clearInterval(timerId);
+          }
+          current++;
+        }, 1000);
+      }
+      // printNumbers(1,5);
+
+      // Task 4
+      function print(from, to) {
+        let current = from;
+        setTimeout(function go() {
+          console.log(current);
+          if (current < to) {
+            setTimeout(go, 1000);
+          }
+          current++;
+        }, 1000);
+      }
+      //   print(5, 10);
+
+      // Task 5
+      function sendSearchQuery(text) {
+        console.log(`API Request sent for: ${text}`);
+      }
+
+      function debounce(sendSearchQuery, num) {
+        let timerId;
+        return function (text) {
+          clearTimeout(timerId);
+          timerId = setTimeout(() => {
+            sendSearchQuery(text);
+          }, num);
+        };
+      }
+
+      const smartSearch = debounce(sendSearchQuery, 300);
+
+      smartSearch("a");
+      smartSearch("ap");
+
+      //   Task 5
+      function countBig(num) {
+        let current = 1;
+        function runChunk() {
+          let chunk = 0;
+          while (current <= num && chunk <= 1000) {
+            console.log(current);
+            chunk++;
+            current++;
+          }
+          if (current <= num) {
+            setTimeout(runChunk, 0);
+          }
+        }
+        runChunk();
+      }
+
+      // countBig(3000);
+
+      // Task 7
+      function scheduleDangerousRocket(launchTime) {
+        let timer = setTimeout(() => console.log("🚀 BLAST OFF!"), launchTime);
+        if (launchTime < 5000) {
+          clearTimeout(timer);
+          console.log("❌ Launch aborted: Delay too long!");
+        }
+      }
+
+      scheduleDangerousRocket(3000);
+      scheduleDangerousRocket(6000);
+
+      // Task 8
+      function logStatus(event, state) {
+        console.log(`System Status: ${event} -> ${state}`);
+      }
+      
+      setTimeout(logStatus, 1500, "event", 'state');
+
+    </script>
+  </body>
+</html>
