@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Handling</title>
+</head>
+<body>
+    <script>
+        function safeParse(jsonString){
+            try{
+                let parse = JSON.parse(jsonString);
+                return parse;
+            }catch(err){
+                console.log("Warning: Invalid JSON Detected");
+                return null;
+            }
+        }
+
+        // Task 2
+        class MissingConfigError extends Error{
+            constructor(message){
+                super(message);
+                this.name = "MissingConfigError";
+            }
+        }
+
+        function connectToDatabase(config){
+            if(!config.host || !config.port){
+                throw new MissingConfigError("Error Config");
+            }
+            return "Connected Successfully";
+        }
+        try{
+            connectToDatabase();
+        }catch(err){
+            if(err instanceof MissingConfigError){
+                console.log(`[Config Error]: ${err.message}`);
+            }else{
+                throw err;
+            }
+        }
+
+        // Task 3
+        class Validate extends Error{
+            constructor(message){
+                super(message);
+                this.name = "Validate";
+            }
+        }
+        class Database extends Error{
+            constructor(message){
+                super(message);
+                this.name = "Database";
+            }
+        }
+
+        function registerUser(user){
+            if(user.name.length < 3){
+                throw new Validate("Error");
+            }else if(user.name === "admin"){
+                throw new Database("Username is already Taken");
+            }
+        }
+
+        try{
+            registerUser();
+        }catch(err){
+            if(err instanceof Validate){
+                console.log("Please choose a longer username.");
+            }else if(err instanceof Database){
+                console.log("That username is already in use. Try another.");
+            }else{
+                console.log("Unkown Error Occured");
+            }
+        }
+    </script>
+</body>
+</html>
