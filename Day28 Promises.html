@@ -1,13 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Promises</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        
+      // Task 1
+      //   let promise = new Promise(function (resolve, reject) {
+      //     resolve(1);
+      //     setTimeout(() => resolve(2), 1000);
+      //   });
+
+      //   promise.then(alert);
+
+      // Task 2
+
+      function delay(time) {
+        return new Promise((resolve, reject) => {
+          setTimeout(resolve, time);
+        });
+      }
+      delay(3000).then(() => console.log("After Seconds"));
+
+      //   Task 3
+
+      function flipCoin(){
+        return new Promise((resolve, reject) => {
+            let random = Math.random();
+            if(random > 0.5){
+                resolve("Heads");
+            }else{
+                reject("Tails");
+            }   
+        });
+      }
+
+      flipCoin().then((resolve) => console.log(resolve)).catch( (reject) => console.log(reject));
+
+    //   Task 3
+    function fetchUserData(userId){
+        return new Promise((resolve, reject) => {
+            setTimeout( () => {
+                if(userId > 0){
+                    resolve({id: userId, username: "dev_alex"});
+                }else{
+                    reject("Error: User ID must be greater than 0");
+                }
+            },1500);
+        })
+    }
+
+    fetchUserData(-1).then( result => console.log(result)).catch( reject => console.log(reject));
+
+    // Task 4
+
+    class NetworkError extends Error{
+        constructor(message){
+            super(message);
+            this.name = "NetworkError";
+        }
+    }
+
+    function downloadFile(fileName){
+        return new Promise( (resolve, reject) => {
+            if(fileName === "" || fileName === undefined){
+                reject(new NetworkError("File name cannot be empty"));
+            }else{
+                setTimeout( () => resolve(`Download ${fileName} successfully`),1000);
+            }
+        })
+    }
+    downloadFile("").then( result => console.log(result)).catch( reject => {
+        if(reject instanceof NetworkError){
+            console.log(`[Network Error Occurred]: ${reject.message}`)
+        }
+    })
     </script>
-</body>
+  </body>
 </html>
