@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise API</title>
+  </head>
+  <body>
+    <script>
+      // Task
+      const serverEast = new Promise((resolve) =>
+        setTimeout(() => resolve("☀️ East: 25°C"), 1500),
+      );
+      const serverWest = new Promise((resolve) =>
+        setTimeout(() => resolve("🌧️ West: 18°C"), 1000),
+      );
+      const serverCentral = new Promise((resolve, reject) =>
+        setTimeout(() => reject("Server Central Offline"), 500),
+      );
+
+      Promise.race([serverEast, serverWest, serverCentral])
+        .then((resolve) => console.log(resolve))
+        .catch((err) => console.log(err));
+
+      //   Task
+      Promise.any([serverEast, serverWest, serverCentral]).then((resolve) =>
+        console.log(resolve),
+      );
+
+      // Task
+      Promise.allSettled([serverEast, serverWest, serverCentral]).then(
+        (result) =>
+          result.forEach((obj) => console.log(`${obj.status} : ${obj.value}`)),
+      );
+
+      // Task
+
+      const fastButFlaky = new Promise((resolve, reject) => {
+        setTimeout(() => reject(new Error("Connection dropped")), 200);
+      });
+
+      const slowButSteady = new Promise((resolve) => {
+        setTimeout(() => resolve("✅ Heavy Database Payload"), 1000);
+      });
+
+      Promise.any([fastButFlaky, slowButSteady]).then((result) =>
+        console.log(result),
+      );
+
+      //   Task
+      function downloadImage(url, delay, shouldFail = false) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (shouldFail) {
+              reject(`Failed to load ${url}`);
+            } else {
+              resolve(url);
+            }
+          }, delay);
+        });
+      }
+
+      const img1 = downloadImage("image1.png", 1000);
+      const img2 = downloadImage("image2.png", 500);
+      const img3 = downloadImage("image3.png", 1500, true);
+
+      Promise.all([img1, img2, img3])
+        .then((imgs) => imgs.forEach((img) => console.log(img)))
+        .catch((err) => console.log(err));
+
+      //   Task
+      const fetchProfile = new Promise((resolve) => {
+        setTimeout(() => resolve({ username: "alex_dev", theme: "dark" }), 800);
+      });
+
+      const fetchPosts = new Promise((resolve, reject) => {
+        setTimeout(() => reject(new Error("Posts database timeout")), 500);
+      });
+
+      Promise.all([fetchPosts.catch((err) => []), fetchProfile]).then(
+        ([profile, post]) => console.log({ profile, post }),
+      );
+
+      //   Task
+      let attempt = 0;
+      function unStableApi() {
+        return new Promise((resolve, reject) => {
+          attempt++;
+          if (attempt < 3) {
+            reject("Temporary Network Failure");
+          } else {
+            resolve("Success! Data retrieved.");
+          }
+        });
+      }
+
+      unStableApi()
+        .catch((err) => {
+          console.log(err);
+          return unStableApi();
+        })
+        .catch((err) => {
+          console.log(err);
+          return unStableApi();
+        })
+        .then((result) => console.log(result));
+
+      // Task
+
+      function fetchVerySlowData() {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve("Super valuable database archive"), 3000); // Takes 3 seconds!
+        });
+      }
+
+      function time(ms){
+        return new Promise((resolve, reject) => {
+            setTimeout( () => reject(new Error("Request time out")), ms);
+        })
+      }
+      let arr = [];
+      arr[0] = fetchVerySlowData();
+      arr[1] = time(3000);
+      Promise.race(arr).then(result => console.log(result)).catch(err => console.log(err));
+    </script>
+  </body>
+</html>

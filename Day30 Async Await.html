@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async Await</title>
+  </head>
+  <body>
+    <script>
+      // Task
+      function getRate() {
+        return new Promise((resolve) => setTimeout(() => resolve(1.25), 1000));
+      }
+
+      async function displayRate() {
+        let result = await getRate();
+        console.log(`The converted rate is: ${result * 100}`);
+      }
+      displayRate();
+
+      //   Task
+      const addToCart = (item) =>
+        new Promise((res) => setTimeout(() => res(`Added ${item}`), 1000));
+      const processPayment = () =>
+        new Promise((res) => setTimeout(() => res("Payment OK"), 1000));
+      const shipOrder = () =>
+        new Promise((res) => setTimeout(() => res("Shipped!"), 1000));
+
+      async function checkoutWorkflow(params) {
+        try {
+          let cartResult = await addToCart();
+          let processPayment = await processPayment();
+          let shipOrder = await shipOrder();
+        } catch (err) {
+          console.log("Checkout failed!");
+        }
+
+        console.log("Workflow Complete");
+      }
+      checkoutWorkflow();
+
+      // Task
+      function fetchUserId(userName) {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve(42), 1000);
+        });
+      }
+      function fetchProfileDetails(id) {
+        return new Promise((resolve, reject) => {
+          if (id === 42) {
+            setTimeout(
+              () => resolve({ id: 42, role: "Admin", email: "alex@dev.com" }),
+              1000,
+            );
+          } else {
+            reject("User Profile Not Found");
+          }
+        });
+      }
+
+      async function loadUserProfile(userName) {
+        let detail;
+        try {
+          let username = await fetchUserId(userName);
+          detail = await fetchUserId(username);
+        } catch (err) {
+          console.log(err);
+        }
+        console.log(detail);
+      }
+      loadUserProfile();
+
+      // Task
+
+      const fetchNews = () =>
+        new Promise((res) =>
+          setTimeout(() => res("🔥 JS 2026 Released!"), 2000),
+        );
+      const fetchWeather = () =>
+        new Promise((res) => setTimeout(() => res("☀️ 25°C"), 1500));
+
+      async function getDashboardData() {
+        let result = await Promise.all([fetchNews(), fetchWeather()]);
+        console.log(result);
+      }
+      getDashboardData();
+
+      // Task
+      let tokenExpired = true;
+      function refreshToken() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            tokenExpired = false;
+            resolve("new_token_abc");
+          }, 500);
+        });
+      }
+      function fetchSecureData() {
+        return new Promise((resolve, reject) => {
+          if (tokenExpired) {
+            reject(new Error("Unauthorized"));
+          } else {
+            resolve("🔑 Top Secret Data!");
+          }
+        });
+      }
+
+      async function getSecureDataWorkflow() {
+        let isTrue = true;
+        while (isTrue) {
+          try {
+            let result1 = await fetchSecureData();
+            isTrue = false;
+          } catch (err) {
+            if (err.message === "Unauthorized") {
+              console.log("Token expired. Refreshing token...");
+              await refreshToken();
+              console.log("Token refreshed. Retrying request...");
+            }
+          }
+        }
+      }
+      getSecureDataWorkflow();
+    </script>
+  </body>
+</html>
