@@ -1,0 +1,201 @@
+/* ==========================================================================
+   CSS Variables & Custom Properties (From Style Guide)
+   ========================================================================== */
+:root {
+  --color-white: hsl(0, 100%, 100%);
+  --color-purple-100: hsl(275, 100%, 97%);
+  --color-purple-600: hsl(292, 16%, 49%);
+  --color-purple-950: hsl(292, 42%, 14%);
+
+  --font-family: 'Work Sans', sans-serif;
+  --font-size-body: 16px;
+  
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  background-color: var(--color-purple-100);
+  color: var(--color-purple-600);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  
+  /* Decorative background block common to this design */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="320" fill="none"><path fill="%232F153F" d="M0 0h1440v320H0z"/></svg>');
+  background-repeat: no-repeat;
+  background-size: 100% 320px;
+}
+
+/* ==========================================================================
+   Card Layout
+   ========================================================================== */
+.accordion-card {
+  background-color: var(--color-white);
+  width: 100%;
+  max-width: 600px; /* Adapts perfectly between mobile (375px) and desktop (1440px) */
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(47, 21, 63, 0.1);
+  margin-top: 80px; /* Pushes card down to align nicely with the dark background */
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.accordion-header h1 {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-purple-950);
+}
+
+/* ==========================================================================
+   Accordion Items & Triggers
+   ========================================================================== */
+.accordion-item {
+  border-bottom: 1px solid var(--color-purple-100);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-trigger {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+}
+
+.question-text {
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-purple-950);
+  transition: color 0.2s ease;
+}
+
+.accordion-trigger:hover .question-text,
+.accordion-trigger:focus-visible .question-text {
+  color: #ad28eb; /* Match the vibrant accent purple from the icon */
+}
+
+/* Accessible focus styling */
+.accordion-trigger:focus-visible {
+  outline: 2px dashed #ad28eb;
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   Plus / Minus Toggle Icons (Pure CSS)
+   ========================================================================== */
+.icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background-color: var(--color-purple-100);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+/* Shared line style for plus/minus */
+.icon::before,
+.icon::after {
+  content: '';
+  position: absolute;
+  background-color: #ad28eb;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Horizontal line */
+.icon::before {
+  width: 12px;
+  height: 2px;
+}
+
+/* Vertical line (makes it a plus) */
+.icon::after {
+  width: 2px;
+  height: 12px;
+}
+
+/* Active State Styles (Targeted when JS adds/toggles the '.active' class) */
+.accordion-item.active .icon {
+  background-color: var(--color-purple-950);
+}
+
+.accordion-item.active .icon::before {
+  background-color: var(--color-white);
+}
+
+.accordion-item.active .icon::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(90deg); /* Nice smooth rotate-out */
+}
+
+/* ==========================================================================
+   Accordion Content (Height transition-ready)
+   ========================================================================== */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding-bottom 0.3s ease-out;
+}
+
+.accordion-content p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-purple-600);
+}
+
+/* When active, allow content to display */
+.accordion-item.active .accordion-content {
+  max-height: 200px; /* Large enough to hold the text, transition-friendly */
+  padding-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 480px) {
+  .accordion-card {
+    padding: 1.5rem;
+    margin-top: 40px;
+  }
+  
+  .accordion-header h1 {
+    font-size: 2rem;
+  }
+  
+  .question-text {
+    font-size: 0.95rem;
+  }
+}

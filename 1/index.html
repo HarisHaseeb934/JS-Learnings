@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ Accordion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="accordion-card">
+    <header class="accordion-header">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" fill="none" viewBox="0 0 40 41">
+        <path fill="#AD28EB" d="M37.5 20.5a17.5 17.5 0 1 1-35 0 17.5 17.5 0 0 1 35 0Zm-13-5.25a1.25 1.25 0 0 0-1-1l-2.75-5.5a1.25 1.25 0 0 0-2.5 0l-2.75 5.5a1.25 1.25 0 0 0-1 1l-5.5 2.75a1.25 1.25 0 0 0 0 2.5l5.5 2.75a1.25 1.25 0 0 0 1 1l2.75 5.5a1.25 1.25 0 0 0 2.5 0l2.75-5.5a1.25 1.25 0 0 0 1-1l5.5-2.75a1.25 1.25 0 0 0 0-2.5l-5.5-2.75Z"/>
+      </svg>
+      <h1>FAQs</h1>
+    </header>
+
+    <div class="accordion-list">
+      
+      <div class="accordion-item active">
+        <button class="accordion-trigger" aria-expanded="true" aria-controls="faq1-content">
+          <span class="question-text">What is Frontend Mentor, and how will it help me?</span>
+          <span class="icon" aria-hidden="true"></span>
+        </button>
+        <div id="faq1-content" class="accordion-content" role="region">
+          <p>Frontend Mentor offers realistic coding challenges to help developers improve their frontend coding skills with projects in HTML, CSS, and JavaScript. It's an excellent way to practice find-tuning your skills.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="faq2-content">
+          <span class="question-text">Is Frontend Mentor free?</span>
+          <span class="icon" aria-hidden="true"></span>
+        </button>
+        <div id="faq2-content" class="accordion-content" role="region">
+          <p>Yes, Frontend Mentor offers both free and premium plans. The free tier gives you access to a massive library of high-quality designs to build your portfolio.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="faq3-content">
+          <span class="question-text">Can I use Frontend Mentor projects in my portfolio?</span>
+          <span class="icon" aria-hidden="true"></span>
+        </button>
+        <div id="faq3-content" class="accordion-content" role="region">
+          <p>Absolutely! You can use these projects to showcase your skills to potential employers. We highly encourage sharing your solutions on platforms like GitHub.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

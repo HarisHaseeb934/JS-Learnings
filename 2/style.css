@@ -1,0 +1,157 @@
+/* ==========================================================================
+   Design Variables
+   ========================================================================== */
+:root {
+  --bg-dark: #121214;
+  --calc-bg: #1c1c1e;
+  --screen-bg: #2c2c2e;
+  --key-number-bg: #3a3a3c;
+  --key-operator-bg: #ff9f0a;
+  --key-action-bg: #aeaeb2;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1a5;
+  --text-dark: #1c1c1e;
+
+  --font-family: 'Work Sans', sans-serif;
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-dark);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* ==========================================================================
+   Calculator Wrapper
+   ========================================================================== */
+.calculator {
+  background-color: var(--calc-bg);
+  width: 100%;
+  max-width: 375px; /* Matches standard mobile-first calculator design */
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   Display Screen
+   ========================================================================== */
+.calculator-screen {
+  background-color: var(--screen-bg);
+  min-height: 120px;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.previous-operand {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  min-height: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.current-operand {
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Grid Keypad & Keys
+   ========================================================================== */
+.calculator-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.key {
+  aspect-ratio: 1; /* Makes buttons perfectly square/circular */
+  border: none;
+  border-radius: 50%; /* Classic circular modern calculator style */
+  font-family: var(--font-family);
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.1s ease, transform 0.05s ease;
+  user-select: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tactile click effect */
+.key:active {
+  transform: scale(0.92);
+}
+
+/* Number Keys styling (Gray-black) */
+.key.number {
+  background-color: var(--key-number-bg);
+  color: var(--text-primary);
+}
+.key.number:hover {
+  filter: brightness(1.2);
+}
+
+/* Operator Keys styling (Orange) */
+.key.operator {
+  background-color: var(--key-operator-bg);
+  color: var(--text-primary);
+}
+.key.operator:hover {
+  filter: brightness(1.15);
+}
+
+/* Action Keys styling (AC, DEL, % - light gray) */
+.key.action {
+  background-color: var(--key-action-bg);
+  color: var(--text-dark);
+}
+.key.action:hover {
+  filter: brightness(0.9);
+}
+
+/* Equals button (Stands out, matches operator but distinct hover) */
+.key.equals {
+  background-color: var(--key-operator-bg);
+  color: var(--text-primary);
+}
+.key.equals:hover {
+  filter: brightness(1.15);
+}
+
+/* Responsive adjustments for tiny displays */
+@media (max-width: 320px) {
+  .calculator {
+    padding: 1rem;
+  }
+  .calculator-keys {
+    gap: 8px;
+  }
+  .key {
+    font-size: 1.25rem;
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="calculator">
+    <div class="calculator-screen">
+      <div class="previous-operand"></div>
+      <div class="current-operand">0</div>
+    </div>
+
+    <div class="calculator-keys">
+      <button type="button" class="key action" data-action="clear">AC</button>
+      <button type="button" class="key action" data-action="delete">DEL</button>
+      <button type="button" class="key operator" data-action="percentage">%</button>
+      <button type="button" class="key operator" data-action="divide">÷</button>
+
+      <button type="button" class="key number">7</button>
+      <button type="button" class="key number">8</button>
+      <button type="button" class="key number">9</button>
+      <button type="button" class="key operator" data-action="multiply">×</button>
+
+      <button type="button" class="key number">4</button>
+      <button type="button" class="key number">5</button>
+      <button type="button" class="key number">6</button>
+      <button type="button" class="key operator" data-action="subtract">-</button>
+
+      <button type="button" class="key number">1</button>
+      <button type="button" class="key number">2</button>
+      <button type="button" class="key number">3</button>
+      <button type="button" class="key operator" data-action="add">+</button>
+
+      <button type="button" class="key number decimal">.</button>
+      <button type="button" class="key number double-zero">00</button>
+      <button type="button" class="key number">0</button>
+      <button type="button" class="key equals" data-action="calculate">=</button>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html> 
