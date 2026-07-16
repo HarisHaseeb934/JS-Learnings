@@ -22,69 +22,197 @@
           setTimeout(resolve, time);
         });
       }
-      delay(3000).then(() => console.log("After Seconds"));
+      //   delay(3000).then(() => console.log("After Seconds"));
 
       //   Task 3
 
-      function flipCoin(){
+      function flipCoin() {
         return new Promise((resolve, reject) => {
-            let random = Math.random();
-            if(random > 0.5){
-                resolve("Heads");
-            }else{
-                reject("Tails");
-            }   
+          let random = Math.random();
+          if (random > 0.5) {
+            resolve("Heads");
+          } else {
+            reject("Tails");
+          }
         });
       }
 
-      flipCoin().then((resolve) => console.log(resolve)).catch( (reject) => console.log(reject));
+      //   flipCoin()
+      //     .then((resolve) => console.log(resolve))
+      //     .catch((reject) => console.log(reject));
 
-    //   Task 3
-    function fetchUserData(userId){
+      //   Task 3
+      function fetchUserData(userId) {
         return new Promise((resolve, reject) => {
-            setTimeout( () => {
-                if(userId > 0){
-                    resolve({id: userId, username: "dev_alex"});
-                }else{
-                    reject("Error: User ID must be greater than 0");
-                }
-            },1500);
-        })
-    }
-
-    fetchUserData(-1).then( result => console.log(result)).catch( reject => console.log(reject));
-
-    // Task 4
-
-    class NetworkError extends Error{
-        constructor(message){
-            super(message);
-            this.name = "NetworkError";
-        }
-    }
-
-    function downloadFile(fileName){
-        return new Promise( (resolve, reject) => {
-            if(fileName === "" || fileName === undefined){
-                reject(new NetworkError("File name cannot be empty"));
-            }else{
-                setTimeout( () => resolve(`Download ${fileName} successfully`),1000);
+          setTimeout(() => {
+            if (userId > 0) {
+              resolve({ id: userId, username: "dev_alex" });
+            } else {
+              reject("Error: User ID must be greater than 0");
             }
-        })
-    }
-    downloadFile("").then( result => console.log(result)).catch( reject => {
-        if(reject instanceof NetworkError){
-            console.log(`[Network Error Occurred]: ${reject.message}`)
+          }, 1500);
+        });
+      }
+
+      //   fetchUserData(-1)
+      //     .then((result) => console.log(result))
+      //     .catch((reject) => console.log(reject));
+
+      // Task 4
+
+      class NetworkError extends Error {
+        constructor(message) {
+          super(message);
+          this.name = "NetworkError";
         }
-    })
+      }
 
-    // Task 
+      function downloadFile(fileName) {
+        return new Promise((resolve, reject) => {
+          if (fileName === "" || fileName === undefined) {
+            reject(new NetworkError("File name cannot be empty"));
+          } else {
+            setTimeout(
+              () => resolve(`Download ${fileName} successfully`),
+              1000,
+            );
+          }
+        });
+      }
+      //   downloadFile("")
+      //     .then((result) => console.log(result))
+      //     .catch((reject) => {
+      //       if (reject instanceof NetworkError) {
+      //         console.log(`[Network Error Occurred]: ${reject.message}`);
+      //       }
+      //     });
 
-    let promise = new Promise( (resolve, reject) => resolve(5));
-    promise.then( result => result * 2).then(result => console.log(result + 10));
+      // Task
 
-    // Task 
-    
+      //   let promise = new Promise((resolve, reject) => resolve(5));
+      //   promise
+      //     .then((result) => result * 2)
+      //     .then((result) => console.log(result + 10));
+
+      // Task
+      function addToCart(item) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => resolve(`Added ${item} to cart`), 1000);
+        });
+      }
+
+      function processItem() {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => resolve("Payment processed successfully!"), 1000);
+        });
+      }
+
+      function shipOrder() {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => resolve("Order Shipped!"), 1000);
+        });
+      }
+
+      //   addToCart("Laptop")
+      //     .then((result) => {
+      //       console.log(result);
+      //       return processItem();
+      //     })
+      //     .then((result) => {
+      //       console.log(result);
+      //       return shipOrder();
+      //     })
+      //     .then(() => console.log("All steps complete!"))
+      //     .catch((err) => console.log(err));
+
+      // Task
+
+      function fetchUserAge(username) {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve(25), 1000);
+        });
+      }
+
+      function doubleAge(age) {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve(age * 2), 500);
+        });
+      }
+
+      function formatMessage(doubledAge) {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve(`Your age doubled is: ${doubledAge}`), 500);
+        });
+      }
+
+      fetchUserAge("Alex")
+        .then((result) => doubleAge(result))
+        .then((doubledAge) => formatMessage(doubledAge))
+        .then((finalMessage) => console.log(finalMessage));
+
+      // Task
+      function checkInventory(item) {
+        return new Promise((resolve) => {
+          if (item === "PlayStation") {
+            setTimeout(() => resolve(true), 1000);
+          } else {
+            setTimeout(() => resolve(false), 1000);
+          }
+        });
+      }
+
+      function reserveItem() {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve("Item Reserved"), 500);
+        });
+      }
+
+      function backOrder() {
+        return new Promise((resolve) => {
+          setTimeout(
+            () => resolve("Item backordered (will take 2 weeks)"),
+            500,
+          );
+        });
+      }
+
+      checkInventory("PlayStation")
+        .then((isInStock) => {
+          if (isInStock) {
+            return reserveItem();
+          } else {
+            return backOrder();
+          }
+        })
+        .then((status) => console.log(status));
+
+      // Task
+      function getPrimaryDatabase() {
+        return new Promise((resolve, reject) =>
+          reject(new Error("Primary database is offline")),
+        );
+      }
+
+      function getBackupDatabase() {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve("Backup Data"), 1000);
+        });
+      }
+
+      function renderDashboard(data) {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve("Dashboard loaded with: " + data), 1000);
+        });
+      }
+
+      getPrimaryDatabase()
+        .catch((err) => {
+          console.log("Primary DB failed, switching to backup...");
+          return getBackupDatabase();
+        })
+        .then((data) => renderDashboard(data))
+        .then((message) => console.log(message))
+        .catch((err) => console.log(err));
     </script>
   </body>
 </html>
