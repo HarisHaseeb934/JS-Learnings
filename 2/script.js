@@ -1,10 +1,10 @@
 let previousScreen = document.querySelector(".previous-operand");
 let currentScreen = document.querySelector(".current-operand");
+
+let prev = 0;
+let curr = 0;
 let string = "";
 let op = "";
-let prev = "";
-let current = "";
-let opCount = "";
 
 let obj = {
   "+": (a, b) => a + b,
@@ -12,42 +12,73 @@ let obj = {
   "*": (a, b) => a * b,
   "/": (a, b) => a / b,
 };
-document.querySelectorAll(".key").forEach((key) => {
-  key.addEventListener("click", (e) => {
-    if(e.target.className === "key number"){
-        string += e.target.textContent;
-        currentScreen.textContent = string;
-    }else if(e.target.className === "key operator"){
-        prev = currentScreen.textContent;
-        previousScreen.textContent = currentScreen.textContent;
 
-        currentScreen.textContent = " ";
-        currentScreen.textContent = e.target.textContent;
-        // string += 
+document.querySelectorAll(".calculator-keys").forEach(action => {
+  action.addEventListener("click", (e) => {
 
-    }else if(e.target.className === "key action"){
+    if(e.target.classList.contains("operator")){
+
+      previousScreen.textContent += currentScreen.textContent + e.target.textContent;
+      currentScreen.textContent = "";
+      op = e.target.textContent;
+
+    }else if(e.target.classList.contains("action")){
+
+      if(e.target.getAttribute("data-action") === "delete"){
+        currentScreen.textContent = stringEdit(currentScreen.textContent);
+      }else{
+        clear();
+      }
+
+    }else if(e.target.classList.contains("double-zero")){
+
+      currentScreen.textContent += e.target.textContent;
 
     }else if(e.target.className === "key equals"){
 
+      if(isNaN(parseFloat(currentScreen.textContent)) || isNaN(parseFloat(previousScreen.textContent))){
+        currentScreen.textContent = "Please put valid expression";
+      }
+      currentScreen.textContent = obj[op](parseFloat(previousScreen.textContent), parseFloat(currentScreen.textContent));
+    }else if(e.target.classList.contains("decimal")){
+      if(currentScreen.textContent.includes('.')){
+        return;
+      }
+      currentScreen.textContent += e.target.textContent;
+    }else if(e.target.classList.contains("number")){
+      // currentScreen.textContent = "";
+      currentScreen.textContent += e.target.textContent;
+      
     }
-  });
-});
 
-function calc(a, op, c) {
-  switch (op) {
-    case "+":
-      return obj["+"](a, c);
-      break;
-    case "-":
-      return obj["-"](a, c);
-      break;
-    case "*":
-      return obj["*"](a, c);
-      break;
-    case "/":
-      return obj["/"](a, c);
-      break;
+  })
+})
+
+function clear() {
+  prev = 0;
+  curr = 0;
+  previousScreen.textContent = "";
+  currentScreen.textContent = "";
+}
+
+function validateOperator(string) {
+  
+
+  return string;
+}
+
+function stringEdit(string) {
+  return string.slice(0, -1);
+}
+
+function validString(string){
+  if(!isNaN(parseFloat(string))){
+    return parseFloat(string);
+  }else{
+    return "invalid";
   }
 }
 
-// console.log(calc(10, "+", 11));
+function save(string){
+ 
+}
