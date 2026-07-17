@@ -1,0 +1,144 @@
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #0d0e12;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+/* Alarm Container Card */
+.alarm-card {
+  background: #181a20;
+  border: 1px solid #2d3139;
+  border-radius: 20px;
+  padding: 40px;
+  width: 380px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Digital Clock Display */
+.clock-display {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  color: #00ffcc;
+  text-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+}
+
+/* Dropdown styling */
+.select-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+select {
+  flex: 1;
+  padding: 12px;
+  background: #22252d;
+  border: 1px solid #3a3f4d;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+select:focus {
+  border-color: #00ffcc;
+}
+
+/* Action Buttons */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.btn {
+  flex: 1;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: #00ffcc;
+  color: #0d0e12;
+}
+
+.btn-primary:hover {
+  background: #00d4aa;
+  box-shadow: 0 4px 15px rgba(0, 255, 204, 0.3);
+}
+
+.btn-secondary {
+  background: #22252d;
+  color: #a0a5b5;
+  border: 1px solid #3a3f4d;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #2d3139;
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Status Indicator Text */
+.alarm-status {
+  font-size: 0.9rem;
+  color: #a0a5b5;
+  letter-spacing: 0.5px;
+}
+
+/* ------------------------------------------------------------- */
+/* Active Alarm / Ringing Animations                             */
+/* (Apply the '.ringing' class to '.alarm-card' in your JS!)     */
+/* ------------------------------------------------------------- */
+
+.alarm-card.ringing {
+  border-color: #ff3b30;
+  animation: pulse-border 1.5s infinite alternate ease-in-out;
+}
+
+.alarm-card.ringing .clock-display {
+  color: #ff3b30;
+  text-shadow: 0 0 15px rgba(255, 59, 48, 0.5);
+  animation: shake 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 59, 48, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(255, 59, 48, 0.7);
+  }
+}
+
+@keyframes shake {
+  0% { transform: rotate(-2deg); }
+  100% { transform: rotate(2deg); }
+}

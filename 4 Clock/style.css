@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.clock-box{
+    margin: 100px auto;
+    max-width: 650px;
+    width: 905;
+    background-color: rgb(145, 85, 240);
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+    font-size: 100px;
+    padding:  50px;
+    border-radius: 20px;
+}
+
+.numbers{
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    padding: 30px;
+    margin: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .clock-box{
+    font-size: 40px;
+    padding:  20px;
+  }
+  .numbers{
+    padding: 10px;
+  }
+}

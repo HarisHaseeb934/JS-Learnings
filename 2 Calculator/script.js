@@ -5,6 +5,7 @@ let prev = 0;
 let curr = 0;
 let string = "";
 let op = "";
+let resul = 0;
 
 let obj = {
   "+": (a, b) => a + b,
@@ -38,8 +39,14 @@ document.querySelectorAll(".calculator-keys").forEach(action => {
 
       if(isNaN(parseFloat(currentScreen.textContent)) || isNaN(parseFloat(previousScreen.textContent))){
         currentScreen.textContent = "Please put valid expression";
+        clear(string);
       }
-      currentScreen.textContent = obj[op](parseFloat(previousScreen.textContent), parseFloat(currentScreen.textContent));
+      resul = obj[op](parseFloat(previousScreen.textContent), parseFloat(currentScreen.textContent));
+      if(isFloat(resul)){
+        currentScreen.textContent = resul.toFixed(2);
+      }else{
+        currentScreen.textContent = resul;
+      }
     }else if(e.target.classList.contains("decimal")){
       if(currentScreen.textContent.includes('.')){
         return;
@@ -81,4 +88,10 @@ function validString(string){
 
 function save(string){
  
+}
+
+function isFloat(value) {
+  return typeof value === 'number' && 
+         !Number.isNaN(value) && 
+         !Number.isInteger(value);
 }

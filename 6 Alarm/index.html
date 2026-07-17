@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer's Alarm Clock</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Adding the class "ringing" to this div will trigger the CSS alarm effect -->
+  <div class="alarm-card" id="alarm-card">
+    
+    <div class="clock-display" id="current-time">00:00:00 PM</div>
+    
+    <div class="alarm-controls">
+      <div class="select-group">
+        <select id="hour-select">
+          <option value="" disabled selected>Hour</option>
+          <!-- 12-Hour format -->
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+
+        <select id="minute-select">
+          <option value="" disabled selected>Min</option>
+          <!-- Common intervals (you can add more or populate with JS!) -->
+          <option value="00">00</option>
+          <option value="05">05</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="15">16</option>
+          <option value="15">17</option>
+          <option value="15">18</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+          <option value="32">32</option>
+          <option value="33">33</option>
+          <option value="35">35</option>
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+          <option value="45">45</option>
+          <option value="46">46</option>
+          <option value="47">47</option>
+          <option value="50">50</option>
+          <option value="51">51</option>
+          <option value="52">52</option>
+          <option value="53">53</option>
+          <option value="55">55</option>
+        </select>
+
+        <select id="ampm-select">
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+      </div>
+
+      <div class="button-group">
+        <button id="set-alarm-btn" class="btn btn-primary">Set Alarm</button>
+        <button id="clear-alarm-btn" class="btn btn-secondary">Clear</button>
+      </div>
+    </div>
+
+    <div class="alarm-status" id="status-text"></div>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>
