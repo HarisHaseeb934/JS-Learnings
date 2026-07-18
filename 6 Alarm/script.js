@@ -8,34 +8,34 @@ let grabAmPm = 0;
 
 let arr = [];
 let count = 0;
-let delIndex = 0;
 
 let timerId = setInterval(() => {
   let date = new Date();
   currentTime = date.toLocaleTimeString("en-US", {
     hour: "2-digit",
-    minute: "2-digit"
+    minute: "2-digit",
   });
   currentTimeDisplay.textContent = currentTime;
- 
-  for(let a = 0; a < arr.length; a++){
-    if(a[a] === currentTime){
-        delIndex = a;
-        document.querySelector(".alarm-card").classList.add("ringing");
-        setTimeout(() => {
-            document.querySelector(".alarm-card").classList.remove("ringing");
-            arr.splice(delIndex, 1)
-        }, 20000);
+
+  for (let a = 0; a < arr.length; a++) {
+    if (arr[a] === currentTime) {
+      document.querySelector(".alarm-card").classList.add("ringing");
+     arr = arr.filter((t)=> t !== currentTime)
+      setTimeout(() => {
+        document.querySelector(".alarm-card").classList.remove("ringing");
+        let indexToRemove = arr.indexOf(currentTime);
+        if (indexToRemove > -1) {
+          arr.splice(indexToRemove, 1);
+        }
+        arr.splice(delIndex, 1);
+      }, 20000);
     }
   }
-  
-  
+
   console.log(arr);
 }, 1000);
 
 console.log(currentTime);
-
-
 
 document.querySelector("#set-alarm-btn").addEventListener("click", (e) => {
   grabAmPm = document.getElementById("ampm-select").value;
@@ -46,7 +46,6 @@ document.querySelector("#set-alarm-btn").addEventListener("click", (e) => {
     create(grabHour, grabMin, grabAmPm);
   }
 });
-
 
 function create(h, m, amPm) {
   let div = document.createElement("div");
@@ -72,8 +71,8 @@ function create(h, m, amPm) {
   });
 
   document.querySelector("#clear-alarm-btn").addEventListener("click", (e) => {
-    document.querySelectorAll(".alarm-item").forEach(div => {
-        div.remove();
-    })
-})
+    document.querySelectorAll(".alarm-item").forEach((div) => {
+      div.remove();
+    });
+  });
 }
