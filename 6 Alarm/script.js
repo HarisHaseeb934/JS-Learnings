@@ -1,14 +1,8 @@
 let currentTimeDisplay = document.querySelector("#current-time");
 let status = document.querySelector("#status-text");
 
-let currentTime = 0;
-let grabHour = 0;
-let grabMin = 0;
-let grabAmPm = 0;
-
 let arr = [];
-let date = 0;
-let delId = 0;
+let delId = null;
 
 setInterval(() => {
   date = new Date();
@@ -20,28 +14,32 @@ setInterval(() => {
 
   currentTimeDisplay.textContent = currentTime;
 
-  arr.forEach(obj => {
-    if(obj.time === currentTime){
-      document.querySelector(".alarm-card").classList.add("ringing");
+  arr.forEach((obj) => {
+    if (obj.time === currentTime && obj.id !== delId) {
+      delId = obj.id;
+      let card = document.querySelector(".alarm-card");
+      if (card) {
+        card.classList.add("ringing");
+      }
       setTimeout(() => {
-        document.querySelector(".alarm-card").classList.remove("ringing");
-        delId = obj.id;
-      },10000)
+        if (card) {
+          card.classList.remove("ringing");
+        }
+        arr = arr.filter((obj) => obj.id != delId);
+
+        saveToLocalStorage();
+        loadFromLocalStorage();
+
+        delId = null;
+      }, 10000);
     }
-  })
-
-  setTimeout(() => {
-    arr = arr.filter(obj => obj.id !== delId);
-  },10000)
-
-}, 100);
-
-console.log(currentTime);
+  });
+}, 1000);
 
 document.querySelector("#set-alarm-btn").addEventListener("click", (e) => {
-  grabAmPm = document.getElementById("ampm-select").value;
-  grabMin = document.getElementById("minute-select").value;
-  grabHour = document.getElementById("hour-select").value;
+  let grabAmPm = document.getElementById("ampm-select").value;
+  let grabMin = document.getElementById("minute-select").value;
+  let grabHour = document.getElementById("hour-select").value;
 
   if (grabAmPm && grabMin && grabHour) {
     let obj = {};
@@ -73,30 +71,31 @@ function create(obj) {
   status.appendChild(div);
 
   button.addEventListener("click", (e) => {
-    arr = arr.filter(obj => obj.id != e.target.parentNode.getAttribute("data-id"));
+    arr = arr.filter(
+      (obj) => obj.id != e.target.parentNode.getAttribute("data-id"),
+    );
     div.remove();
     saveToLocalStorage();
   });
 }
 
 document.querySelector("#clear-alarm-btn").addEventListener("click", (e) => {
-  document.querySelectorAll(".alarm-item").forEach((div) => {
-    status.innerHTML = "";
-    arr = [];
-    saveToLocalStorage();
-  });
+  status.innerHTML = "";
+  arr = [];
+  saveToLocalStorage();
 });
 
-function saveToLocalStorage(){
+function saveToLocalStorage() {
   localStorage.setItem("arr", JSON.stringify(arr));
 }
 
-function loadFromLocalStorage(){
-  if(localStorage.getItem("arr")){
+function loadFromLocalStorage() {
+  status.innerHTML = "";
+  if (localStorage.getItem("arr")) {
     arr = JSON.parse(localStorage.getItem("arr"));
-    arr.forEach(obj => {
+    arr.forEach((obj) => {
       create(obj);
-    })
+    });
   }
 }
 
