@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="weather-container">
+      <!-- Search Bar -->
+      <div class="search-box">
+        <input
+          type="text"
+          id="city-input"
+          placeholder="Enter city name..."
+          autocomplete="off"
+        />
+        <button id="search-btn">Search</button>
+      </div>
+
+      <!-- Current Weather Section -->
+      <div class="current-weather">
+        <h2 id="location">San Francisco</h2>
+        <div class="weather-main">
+          <img
+            id="weather-icon"
+            src="	https://openweathermap.org/img/wn/01d@2x.png"
+            alt="Weather Icon"
+          />
+          <h1 id="temperature">72°C</h1>
+        </div>
+        <p id="description">Partly Cloudy</p>
+      </div>
+
+      <!-- Single-Day Weather Details -->
+      <div class="weather-details">
+        <div class="detail-card">
+          <span>Feels Like</span>
+          <strong id="feels-like">70°C</strong>
+        </div>
+        <div class="detail-card">
+          <span>Humidity</span>
+          <strong id="humidity">45%</strong>
+        </div>
+        <div class="detail-card">
+          <span>Wind Speed</span>
+          <strong id="wind-speed">12 mph</strong>
+        </div>
+        <div class="detail-card">
+          <span>Pressure</span>
+          <strong id="pressure">1013 hPa</strong>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
