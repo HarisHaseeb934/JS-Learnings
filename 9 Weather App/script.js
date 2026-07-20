@@ -3,11 +3,21 @@
 const elements = document.querySelectorAll(
   "#location, #temperature, #description, .detail-card strong, #weather-icon",
 );
+const input = document.querySelector("#city-input");
 
 document.getElementById("search-btn").addEventListener("click", async (e) => {
   let cityName = document.getElementById("city-input").value;
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName.trim().toLowerCase()}&appid=45a37725c7f874154ae9327c30ebc123&units=metric`;
   await weather(url);
+});
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    let cityName = document.getElementById("city-input").value;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName.trim().toLowerCase()}&appid=45a37725c7f874154ae9327c30ebc123&units=metric`;
+    weather(url);
+  }
 });
 
 async function weather(url) {
@@ -43,8 +53,8 @@ async function weather(url) {
   } catch (err) {
     console.log(err.message);
     elements.forEach((el) => {
-        el.classList.remove("fade-out");
-      });
+      el.classList.remove("fade-out");
+    });
   }
 }
 
